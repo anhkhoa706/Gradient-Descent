@@ -1,3 +1,4 @@
+import yaml
 import torch
 import numpy as np
 import pandas as pd
@@ -7,6 +8,10 @@ import matplotlib.pyplot as plt
 LEARNING_RATE = 1e-3  # Adjusted for better convergence
 EPOCHS = 10000        
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+with open("config.yaml", "r") as f:
+    config = yaml.safe_load(f)
+DATA_PATH = config["data_path"]
 
 # Define the model
 class HousePricePredictor(torch.nn.Module):
@@ -106,7 +111,7 @@ def plot_loss(losses):
 
 def main():
     # Load the data from the CSV file
-    data_file = "data/selected_columns.csv"
+    data_file = f"{DATA_PATH}\processed\selected_columns.csv"
     features, target = load_data(data_file)
 
     # Initialize the model with the correct number of features
