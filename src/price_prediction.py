@@ -7,7 +7,7 @@ import os
 
 # Training parameters
 LEARNING_RATE = 1e-3  # Adjusted for better convergence
-EPOCHS = 10_000       
+EPOCHS = 40_000       
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load configuration
@@ -84,6 +84,10 @@ def evaluate_model(model: torch.nn.Module, features: torch.Tensor, target: torch
         predictions = model(features).cpu().numpy()
         actual = target.cpu().numpy()
 
+    # Compute Mean Absolute Percentage Error (MAPE)
+    mape = np.mean(np.abs((actual - predictions) / actual)) * 100
+    print(f"Mean Absolute Percentage Error (MAPE): {mape:.2f}%")
+    
     # Scatter plot
     plt.figure(figsize=(8, 6))
     plt.scatter(actual, predictions, alpha=0.6, color='blue', label="Predictions")
@@ -93,10 +97,6 @@ def evaluate_model(model: torch.nn.Module, features: torch.Tensor, target: torch
     plt.title("Actual vs Predicted Total Price")
     plt.legend()
     plt.show()
-
-    # Compute Mean Absolute Percentage Error (MAPE)
-    mape = np.mean(np.abs((actual - predictions) / actual)) * 100
-    print(f"Mean Absolute Percentage Error (MAPE): {mape:.2f}%")
 
 def plot_loss(losses: list):
     """
