@@ -1,7 +1,6 @@
-# Gradient-Descent
-# House Price Prediction
+# Real Estate Price Prediction using Gradient-Descent
 
-This project implements a machine learning model using PyTorch to predict house prices based on various features. The model is a simple linear regression trained with gradient descent.
+This project implements a machine learning model using PyTorch to predict real estate prices based on various features. The model is a simple linear regression trained with gradient descent.
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -13,7 +12,7 @@ This project implements a machine learning model using PyTorch to predict house 
 - [License](#license)
 
 ## Project Overview
-The goal of this project is to predict house prices based on key property features such as building area, property age, and distance to the city center. The model is trained using a linear regression approach.
+The goal of this project is to predict real estate prices based on key property features such as building area, property age, and distance to the city center. The model is trained using a linear regression approach.
 
 ## Dataset
 The dataset is stored in a CSV file (`selected_columns.csv`) and contains the following features:
@@ -36,7 +35,7 @@ pip install torch pandas numpy matplotlib
 To train and evaluate the model, run:
 
 ```sh
-python house_price_prediction.py
+python price_prediction.py
 ```
 
 The script will:
@@ -49,10 +48,10 @@ The script will:
 The model is a simple **linear regression** implemented in PyTorch:
 
 ```python
-class HousePricePredictor(torch.nn.Module):
+class PricePredictor(torch.nn.Module):
     def __init__(self, input_dim):
-        super(HousePricePredictor, self).__init__()
-        self.linear = torch.nn.Linear(input_dim, 1)
+        super().__init__()
+        self.linear = torch.nn.Linear(input_dim, 1, bias=True)
 
     def forward(self, x):
         return self.linear(x)
