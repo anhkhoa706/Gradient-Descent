@@ -42,7 +42,7 @@ The script will:
 1. Load and preprocess the dataset.
 2. Train a linear regression model using Mean Squared Error loss and Stochastic Gradient Descent (SGD).
 3. Display training loss and model evaluation metrics.
-4. Generate visualization for actual vs. predicted house prices.
+4. Generate visualization for actual vs. predicted prices.
 
 ## Model
 The model is a simple **linear regression** implemented in PyTorch:

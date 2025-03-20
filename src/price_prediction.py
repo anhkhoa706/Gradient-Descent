@@ -16,7 +16,7 @@ with open("config.yaml", "r") as f:
 DATA_PATH = config["data_path"]
 
 # Define the model
-class HousePricePredictor(torch.nn.Module):
+class PricePredictor(torch.nn.Module):
     def __init__(self, input_dim: int):
         super().__init__()
         self.linear = torch.nn.Linear(input_dim, 1, bias=True)
@@ -116,7 +116,7 @@ def main():
     features, target = load_data(data_file)
 
     # Initialize model
-    model = HousePricePredictor(features.shape[1]).to(DEVICE)
+    model = PricePredictor(features.shape[1]).to(DEVICE)
 
     # Train the model
     losses = train_model(model, features, target, EPOCHS, LEARNING_RATE)
